@@ -30,7 +30,7 @@ public class CreditCardServiceImpl implements CreditCardService{
 		
 		return downstreamResponse.getData().stream().filter(creditcard->{
 			try {
-				return getDate(creditcard.getExpiration()).after(sdf.parse(DATE_TO_BE_COMPARED));
+				return getDate(creditcard.getExpiration()).after(getDate(DATE_TO_BE_COMPARED));
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -41,7 +41,6 @@ public class CreditCardServiceImpl implements CreditCardService{
 	}
 	
 	private Date getDate(String dateToConvert) throws ParseException {
-		System.out.println(dateToConvert);
 		return sdf.parse(dateToConvert);
 	}
 }
