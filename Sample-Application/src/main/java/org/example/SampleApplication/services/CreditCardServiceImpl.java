@@ -26,7 +26,7 @@ public class CreditCardServiceImpl implements CreditCardService{
 	@Override
 	public List<CreditCard> fetchAllCreditCards() {
 
-		CreditCardDownstreamResponse downstreamResponse = restTemplate.getForObject(ENDPOINT_URL, CreditCardDownstreamResponse.class);
+		CreditCardDownstreamResponse downstreamResponse = restTemplate.getForObject("https://fakerapi.it/api/v1/credit_cards?_quantity=20", CreditCardDownstreamResponse.class);
 		
 		return downstreamResponse.getData().stream().filter(creditcard->{
 			try {
