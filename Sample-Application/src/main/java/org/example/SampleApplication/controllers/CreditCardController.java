@@ -22,7 +22,7 @@ public class CreditCardController {
 	@PostMapping("/fetch-expired-cards")
 	public ResponseEntity<List<CreditCard>> getCreditCards(@RequestParam("type") String type){
 		
-		List<CreditCard> creditCards = this.creditCardService.fetchAllCreditCards();
+		List<CreditCard> creditCards = this.creditCardService.fetchAllCreditCards(type);
 		ResponseEntity<List<CreditCard>> responseEntity = new ResponseEntity<List<CreditCard>>(creditCards, HttpStatus.OK);
 		return responseEntity;
 		

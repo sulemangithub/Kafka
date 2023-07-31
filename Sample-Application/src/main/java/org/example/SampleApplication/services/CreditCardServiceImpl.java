@@ -24,11 +24,11 @@ public class CreditCardServiceImpl implements CreditCardService{
 	private static final String ENDPOINT_URL = "https://fakerapi.it/api/v1/credit_cards?_quantity=20";
 	
 	@Override
-	public List<CreditCard> fetchAllCreditCards() {
+	public List<CreditCard> fetchAllCreditCards(String type) {
 
 		CreditCardDownstreamResponse downstreamResponse = restTemplate.getForObject("https://fakerapi.it/api/v1/credit_cards?_quantity=20", CreditCardDownstreamResponse.class);
 		
-		return downstreamResponse.getData().stream().filter(creditcard->{
+		return downstreamResponse.getData().stream().filter(creditCard -> creditCard.getType().equalsIgnoreCase(type)) .filter(creditcard->{
 			try {
 				return getDate(creditcard.getExpiration()).after(getDate(DATE_TO_BE_COMPARED));
 			} catch (ParseException e) {
